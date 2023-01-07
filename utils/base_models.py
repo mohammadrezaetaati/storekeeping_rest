@@ -21,7 +21,7 @@ class BasePartModel(models.Model):
 
     name = models.CharField(max_length=40)
     brand = models.CharField(max_length=40)
-    number = models.JSONField(dict)
+    number = models.JSONField(dict,null=True,blank=True)
 
     class Meta:
         abstract = True
