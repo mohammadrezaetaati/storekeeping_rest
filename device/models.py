@@ -31,6 +31,9 @@ class Part(BasePartModel):
 
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
 
+    class Meta:
+        unique_together = ('name','brand','category')
+
     def __str__(self) -> str:
         return f'{self.name} - {self.category.name}'
 
