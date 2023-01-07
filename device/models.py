@@ -8,7 +8,7 @@ from utils.base_models import BasePartModel,BaseWorkOrder
 
 class Category(models.Model):
 
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30,unique=True)
     identification = models.BooleanField(default=False)
 
     def __str__(self) -> str:
@@ -19,6 +19,9 @@ class BrandCategory(models.Model):
 
     name = models.CharField(max_length=30)
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
+
+    class Meta:
+        unique_together = ('name','category',)
 
     def __str__(self) -> str:
         return f'{self.name} - {self.category.name}'
