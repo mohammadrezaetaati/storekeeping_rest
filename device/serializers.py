@@ -1,6 +1,10 @@
-from rest_framework import serializers
+from django.shortcuts import get_object_or_404
 
-from .models import Category,BrandCategory
+from rest_framework import serializers
+from rest_framework import exceptions
+
+from .models import Category,BrandCategory,Part
+from utils.message_handler.handler import get_message,msg
 
 
 
@@ -21,3 +25,25 @@ class BrandCategoryViewsetSerializers(serializers.ModelSerializer):
     class Meta:
         model = BrandCategory
         fields = "__all__"
+
+
+
+class CategoryCustomField(serializers.CharField):
+
+    def to_internal_value(self, data):  
+        try:
+            category = get_object_or_404(Category,id=data)
+            return category
+        except ValueError:
+            raise exceptions.ParseError(get_message(msg.ERROR_Incorrect_Type_Expected_PK_Value))
+        
+
+class PartViewsetSerializers(serializers.ModelSerializer):
+
+    category = CategoryCustomField()
+
+    class Meta:
+        model = Part
+        exclude =['number']
+
+    
