@@ -31,13 +31,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     ROLE_CHOICE = (
         ('technician_phoneline', 'Technician_PhoneLine'),
         ('technician_device', 'Technician_Device'),
-        ('storekepeer', 'Storekepeer'),
+        ('storekeeper', 'Storekeeper'),
         ('inspector', 'Inspector'),
         ('admin', 'Admin'),
     )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
     personnel_id = models.CharField(max_length=8, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     USERNAME_FIELD = 'personnel_id'
     role = models.CharField(max_length=255, choices=ROLE_CHOICE)
     objects = UserManager()

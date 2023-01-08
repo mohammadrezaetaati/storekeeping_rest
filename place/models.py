@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
 from utils.base_models import BasePlaceModel
+
 
 
 
@@ -11,7 +13,8 @@ User = get_user_model()
 
 class Place(BasePlaceModel):
 
-    storekepper = models.ForeignKey(User,on_delete=models.PROTECT)
+    storekeeper = models.ForeignKey(User,on_delete=models.PROTECT)
+
 
 
 class Branch(BasePlaceModel):

@@ -7,7 +7,7 @@ from django.db import models
 
 class BasePlaceModel(models.Model):
 
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40,unique=True)
     boss = models.CharField(max_length=20)
 
     def __str__(self) -> str:
