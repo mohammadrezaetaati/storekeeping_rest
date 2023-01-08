@@ -27,7 +27,6 @@ class BrandCategoryViewsetSerializers(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
 class CategoryCustomField(serializers.CharField):
 
     def to_internal_value(self, data):  
@@ -35,7 +34,7 @@ class CategoryCustomField(serializers.CharField):
             category = get_object_or_404(Category,id=data)
             return category
         except ValueError:
-            raise exceptions.ParseError(get_message(msg.ERROR_Incorrect_Type_Expected_PK_Value))
+            raise exceptions.ParseError(get_message(msg.ERROR_INCORRECT_TYPE_EXPECTED_PK_VALUE))
         
 
 class PartViewsetSerializers(serializers.ModelSerializer):
