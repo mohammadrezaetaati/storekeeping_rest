@@ -11,4 +11,4 @@ def get_message(message_code, is_dict=True, **kwargs):
     if kwargs:
         message = message.format(**kwargs)
 
-    return dict(detail=message, code=message_code) if is_dict else message
+    return dict(detail=message, code=message_code,**kwargs) if is_dict else message

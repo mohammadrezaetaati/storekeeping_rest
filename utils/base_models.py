@@ -17,10 +17,9 @@ class BasePlaceModel(models.Model):
         abstract = True
 
 
-class BasePartModel(models.Model):
+class BaseBrandPartModel(models.Model):
 
     name = models.CharField(max_length=40)
-    brand = models.CharField(max_length=40)
     number = models.JSONField(dict,null=True,blank=True)
 
     class Meta:
@@ -29,23 +28,14 @@ class BasePartModel(models.Model):
 
 class BaseWorkOrder(models.Model):
 
-    STATUS_CHOICES = [
-        ('finished','Finished'),
-        ('wating','Wating'),
-        ('accept','Accept'),
-        ('cancel','Cancel'),
-    ]
-
-    number = models.CharField(max_length=30)
+    number = models.CharField(max_length=30,null=True,blank=True)
     problem = models.TextField()
-    description_status_cancel = models.TextField()
-    description = models.TextField()
+    description_status_cancel = models.TextField(null=True)
+    description = models.TextField(null=True)
     create_time = models.DateTimeField(auto_now_add=True)
-    accept_time = models.DateTimeField()
-    finished_time = models.DateTimeField()
-    cancel_time = models.DateTimeField()
-    status = models.CharField(max_length=14,choices=STATUS_CHOICES)
-
+    finished_time = models.DateTimeField(null=True,blank=True)
+    cancel_time = models.DateTimeField(null=True,blank=True)
+    accept_time = models.DateTimeField(null=True)
 
     class Meta:
         abstract = True

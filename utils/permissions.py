@@ -24,7 +24,7 @@ class IsStorekepeer(IsAuthenticated):
 
     def has_permission(self, request, view):
         return super().has_permission(request, view) and \
-                    request.user.role == 'storekepeer' or\
+                    request.user.role == 'storekeeper' or\
                     request.user.role == 'admin'
 
 
